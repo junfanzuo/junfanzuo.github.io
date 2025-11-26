@@ -9,19 +9,21 @@
     gap: 40px;
     margin-top: 30px;
     padding: 20px 0;
+    position: relative;
   }
  .left-column, .right-column {
     flex: 1;
   }
-  .split-container::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 120px;
-    bottom: 80px;
-    width: 2px;
-    background: #8B4513;
-  }
+  .split-container::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 70px;
+  bottom: 120px;          
+  width: 2px;
+  background: #8B4513;
+  transform: translateX(-50%);
+}
   .left-column { position: relative; padding-right: 50px; }
   .right-column { position: relative; padding-left: 50px; }
   
