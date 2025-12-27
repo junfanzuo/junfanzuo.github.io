@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Logic I — ZUO Junfan</title>
+</head>
+<body>
+<div id="container">
+<h1>Logic I</h1>
+<p><em>27 Dec 2025</em></p>
+
+<p>I am currently restudying logic. This post serves as the review notes for it. I use <em>forall x (UBC edition): An Introduction to Formal Logic</em>by Jonathan Ichikawa and P. D. Magnus as the textbook. A useful website to study Logic (or other wonderful philosophy) is <em>Critical Thinking Web</em> developed by Joe Lau at HKU.</p>
+
+<h2>§0.1 Argument</h2>
+
+<p>I shall begin this chapter with a goofy example. My girlfriend (let’s call her Ann<sup>1</sup>) is mad at me because I sometimes don’t answer her phone – I am playing video games and IT CANNOT BE PAUSED. Ann then accused me of not loving her anymore. This is not a healthy conversation in a relationship but Ann’s argument is:</p>
+
+<p><strong>Premise 1</strong> If I don’t answer the phone, then I don’t love Ann anymore.</p>
+<p><strong>Premise 2</strong> I don’t answer the phone.</p>
+<p><strong>Conclusion</strong> Therefore, I don’t love Ann anymore.</p>
+
+<p>An argument includes Premises and Conclusions. In Ann’s argument, the Premises are the first two lines and the Conclusion is the last sentence. Ann’s Conclusion is supported by her Premises so we have the definition for them: Conclusion is the proposition you want to believe or argue for and Premise is the reason to support your Conclusion. </p>
+
+<h2>§0.2 Validity & Soundness</h2>
+
+<p>(I realized that I’ve spent too much on the previous chapter. I don’t want to make this post too basic since my goal is to learn something new. I’ll skip contents that I’ve already known, and they are marked with §0.x.)</p>
+
+<p>Ann’s argument is valid . Let’s take a look at Ichikawa’s definition of Validity: “<em>An argument is deductively valid if and only if it is impossible for all the premises to be true while the conclusion is false</em>” (Ichikawa, 2019, p. 15). Clearly the conclusion in Ann’s argument is true if Premise 1 and 2 are true (<em>modus ponens</em>) but this is intuitively disturbing – I get mad as well when I hear something like this because Ann is just being goofy! Logic in fact only cares about the structure not the content. Now two important cases: (a) Tautological Conclusion (<em>i.e.</em>, any argument with a tautological conclusion is valid), and (b) Inconsistent Premises (<em>i.e.</em>, any argument with logically inconsistent premises is valid). </p>
+
+<p>There is a particularly confusing argument on <em>Critical Thinking Web</em>:</p>
+
+<p><strong>Premise 1</strong> All cows are mammals.</p>
+<p><strong>Conclusion</strong> Therefore, Therefore, the sun is larger than the moon.</p>
+
+<p>From the previous case (a), this argument seems to be valid because it has a tautological conclusion – the sun is indeed larger than the moon, obviously! However, this is not a tautology thus case (a) does not fit here. If you read my footnote, I distinguished impossible and <em>logically</em> impossible. Consider the sun and the moon. It is <em>not</em> impossible that the sun must be larger than the moon because the sun <em>could have</em> shrunk and be smaller than the moon. What is <em>logically</em> impossible is that the sun is larger than the moon and the sun is smaller than the moon (contradiction). Therefore, the conclusion in the above argument could be false so the argument is invalid. </p>
+
+<p>Another concept is Soundness. A sound argument <em>iff</em> it is valid and all the premises are true.</p>
+
+<h2>§0.3 Logic Connectives & Truth Table</h2>
+
+<p>You can use the following connectives to construct sentences and you can determine their truth value:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Connectives</th>
+      <th>Translation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Negation (~)</td>
+      <td><em>It is not the case that...</em></td>
+    </tr>
+    <tr>
+      <td>Conjunction (&and;)</td>
+      <td><em>Both...and...</em></td>
+    </tr>
+    <tr>
+      <td>Disjunction (&or;)</td>
+      <td><em>Either<sup>4</sup>...or...</em></td>
+    </tr>
+    <tr>
+      <td>Conditional (&rarr;)</td>
+      <td><em>If...then...</em></td>
+    </tr>
+    <tr>
+      <td>Biconditional (&harr;)</td>
+      <td><em>...iff...</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>p</th>
+      <th>q</th>
+      <th>~p</th>
+      <th>(p&and;q)</th>
+      <th>(p&or;q)</th>
+      <th>(p&rarr;q)</th>
+      <th>(p&harr;q)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>T</td>
+      <td>T</td>
+      <td>F</td>
+      <td>T</td>
+      <td>T</td>
+      <td>T</td>
+      <td>T</td>
+    </tr>
+    <tr>
+      <td>T</td>
+      <td>F</td>
+      <td>F</td>
+      <td>F</td>
+      <td>T</td>
+      <td>F</td>
+      <td>F</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td>T</td>
+      <td>T</td>
+      <td>F</td>
+      <td>T</td>
+      <td>T</td>
+      <td>F</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td>F</td>
+      <td>T</td>
+      <td>F</td>
+      <td>F</td>
+      <td>T</td>
+      <td>T</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+        <h2>Notes</h2>
+        <p><sup>1</sup> ‘Ann’ the name is pretty much like ‘一心’ in the writing part in Chinese subject in HKDSE, if you know it, you know it. There will be many more Ann in future posts.</p>
+
+        <p><sup>2</sup> More precisely, a <em>deductively</em> valid argument.</p>
+
+        <p><sup>3</sup> Impossible, or <em>logically</em> impossible? Some give the definition that an argument is deductively valid <em>iff</em> it is not logically possible that its premises are true while the conclusion is false simultaneously. ‘Logically’ here matters since it opens the discussion of modality.</p>
+
+        <p><sup>4</sup> The disjunction (&or;) here is inclusive.</p>
+
+  <h2>Reference</h2>
+
+  <p>Ichikawa, Jonathan, and P. D. Magnus. <i>forall x (UBC edition): An Introduction to Formal Logic. 2019.</i></p>
+
+  <p>Lau, Joe. <em>Critical Thinking Web</em>. https://philosophy.hku.hk/think/</p>
+  
+        <br><br>
+<p style="text-align:center;">
+  <a href="../2025/">← Back to 2025</a> | <a href="../../index.html">Homepage</a>
+</p>
+<div class="contact"><strong>Contact:</strong> junfanzuo@outlook.com</a></div>
+</div>
+</body>
+</html>
