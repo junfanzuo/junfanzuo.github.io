@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
+<style>
     body {
         font-family: "Times New Roman", serif;
         font-size: 18px;
@@ -9,22 +9,18 @@
         background-color: #f9f9f9;
         padding: 20px;
     }
-    h2, h3 {
+    h2 {
         font-family: Arial, sans-serif;
         border-bottom: 2px solid #333;
         padding-bottom: 5px;
-        margin-top: 30px;
-    }
-    h3 {
-        border-bottom: 1px solid #ccc;
-        font-size: 1.1rem;
-        color: #444;
+        margin-top: 40px;
     }
     
     .rules-container {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
+        align-items: flex-start;
     }
     
     .rule-box {
@@ -32,20 +28,24 @@
         padding: 15px;
         border: 1px solid #ddd;
         border-radius: 4px;
-        min-width: 250px;
+        min-width: 260px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
     
     .rule-title {
         font-family: Arial, sans-serif;
         font-weight: bold;
-        font-size: 0.9rem;
-        margin-bottom: 10px;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
         color: #222;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
     }
 
     table.proof {
         border-collapse: collapse;
         width: 100%;
+        margin-bottom: 10px;
     }
     
     td {
@@ -57,11 +57,12 @@
         text-align: right;
         color: #666;
         font-style: italic;
-        width: 20px;
+        width: 25px;
+        padding-right: 8px;
     }
     
     .col-bar {
-        border-right: 1px solid black;
+        border-right: 1.5px solid black;
         width: 5px;
         padding: 0;
     }
@@ -69,36 +70,44 @@
     .col-formula {
         padding-left: 10px;
         font-style: italic;
+        white-space: nowrap;
     }
     
     .col-rule {
         text-align: right;
-        font-family: "Courier New", Courier, monospace;
-        font-size: 0.9em;
+        font-family: "Times New Roman", serif;
+        font-size: 1rem;
         white-space: nowrap;
+        color: #000;
     }
 
-    .subproof {
-        border-left: 1px solid black;
+    .subproof-container {
+        border-left: 1.5px solid black;
         padding-left: 10px;
         margin-left: 2px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
     
     .assumption {
-        border-bottom: 1px solid black;
-        display: inline-block;
-        min-width: 20px; /* Ensures the line is visible even for short vars */
+        border-bottom: 1.5px solid black;
+        display: block;
+        width: fit-content;
+        min-width: 20px;
         padding-bottom: 2px;
-        margin-bottom: 2px;
     }
 
-    .equiv-table td {
-        text-align: center;
-        padding: 5px 10px;
+    .proof-divider {
+        height: 1px;
+        background-color: #ddd;
+        margin: 15px 0;
     }
+
     .equiv-symbol {
         font-size: 1.5rem;
-        line-height: 1;
+        padding: 0 10px;
+        vertical-align: middle;
     }
 
 </style>
@@ -156,8 +165,16 @@
         <div class="rule-title">Disjunction Elimination</div>
         <table class="proof">
             <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &or; &Psi;</td><td></td></tr>
-            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">&not;&Psi;</td><td></td></tr>
+            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">~&Psi;</td><td></td></tr>
             <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Phi;</td><td class="col-rule">&or;E m, n</td></tr>
+        </table>
+        
+        <div class="proof-divider"></div>
+
+        <table class="proof">
+            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &or; &Psi;</td><td></td></tr>
+            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">~&Phi;</td><td></td></tr>
+            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Psi;</td><td class="col-rule">&or;E m, n</td></tr>
         </table>
     </div>
 
@@ -168,19 +185,18 @@
                 <td class="col-num">m</td>
                 <td class="col-bar"></td>
                 <td class="col-formula">
-                    <div class="subproof">
-                        <span class="assumption">&Phi;</span> (want &Psi;)<br>
-                        ...<br>
-                        &Psi;
+                    <div class="subproof-container">
+                        <span class="assumption">&Phi;</span>
+                        <span>&Psi;</span>
                     </div>
                 </td>
-                <td class="col-rule"><br><br>n</td>
+                <td class="col-rule">(want &Psi;)<br><br>n</td>
             </tr>
             <tr>
                 <td class="col-num"></td>
                 <td class="col-bar"></td>
-                <td class="col-formula">&Phi; &sup; &Psi;</td>
-                <td class="col-rule">&sup;I m-n</td>
+                <td class="col-formula">&Phi; &rarr; &Psi;</td>
+                <td class="col-rule">&rarr;I m-n</td>
             </tr>
         </table>
     </div>
@@ -188,50 +204,35 @@
     <div class="rule-box">
         <div class="rule-title">Conditional Elimination</div>
         <table class="proof">
-            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &sup; &Psi;</td><td></td></tr>
+            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &rarr; &Psi;</td><td></td></tr>
             <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">&Phi;</td><td></td></tr>
-            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Psi;</td><td class="col-rule">&sup;E m, n</td></tr>
-        </table>
-    </div>
-</div>
-
-<h2>§1.2 Derived Rules</h2>
-<div class="rules-container">
-
-    <div class="rule-box">
-        <div class="rule-title">Dilemma (Constructive)</div>
-        <table class="proof">
-            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &or; &Psi;</td><td></td></tr>
-            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">&Phi; &sup; &Omega;</td><td></td></tr>
-            <tr><td class="col-num">o</td><td class="col-bar"></td><td class="col-formula">&Psi; &sup; &Omega;</td><td></td></tr>
-            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Omega;</td><td class="col-rule">DIL m, n, o</td></tr>
-        </table>
-    </div>
-
-    <div class="rule-box">
-        <div class="rule-title">Modus Tollens</div>
-        <table class="proof">
-            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &sup; &Psi;</td><td></td></tr>
-            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">&not;&Psi;</td><td></td></tr>
-            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&not;&Phi;</td><td class="col-rule">MT m, n</td></tr>
-        </table>
-    </div>
-
-    <div class="rule-box">
-        <div class="rule-title">Hypothetical Syllogism</div>
-        <table class="proof">
-            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &sup; &Psi;</td><td></td></tr>
-            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">&Psi; &sup; &Omega;</td><td></td></tr>
-            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Phi; &sup; &Omega;</td><td class="col-rule">HS m, n</td></tr>
+            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Psi;</td><td class="col-rule">&rarr;E m, n</td></tr>
         </table>
     </div>
 
     <div class="rule-box">
         <div class="rule-title">Biconditional Introduction</div>
         <table class="proof">
-            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &sup; &Psi;</td><td></td></tr>
-            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">&Psi; &sup; &Phi;</td><td></td></tr>
-            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Phi; &equiv; &Psi;</td><td class="col-rule">&equiv;I m, n</td></tr>
+            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &rarr; &Psi;</td><td></td></tr>
+            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">&Psi; &rarr; &Phi;</td><td></td></tr>
+            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Phi; &harr; &Psi;</td><td class="col-rule">&harr;I m, n</td></tr>
+        </table>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Biconditional Elimination</div>
+        <table class="proof">
+            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &harr; &Psi;</td><td></td></tr>
+            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">&Phi;</td><td></td></tr>
+            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Psi;</td><td class="col-rule">&harr;E m, n</td></tr>
+        </table>
+
+        <div class="proof-divider"></div>
+
+        <table class="proof">
+            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &harr; &Psi;</td><td></td></tr>
+            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">&Psi;</td><td></td></tr>
+            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Phi;</td><td class="col-rule">&harr;E m, n</td></tr>
         </table>
     </div>
 
@@ -242,78 +243,168 @@
                 <td class="col-num">m</td>
                 <td class="col-bar"></td>
                 <td class="col-formula">
-                    <div class="subproof">
-                        <span class="assumption">&Phi;</span> (for reductio)<br>
-                        ...<br>
-                        &Psi;<br>
-                        &not;&Psi;
+                    <div class="subproof-container">
+                        <span class="assumption">&Phi;</span>
+                        <span>&Psi;<br>~&Psi;</span>
                     </div>
                 </td>
-                <td class="col-rule"><br><br>n<br>o</td>
+                <td class="col-rule">(for reductio)<br><br>n<br>o</td>
             </tr>
             <tr>
                 <td class="col-num">p</td>
                 <td class="col-bar"></td>
-                <td class="col-formula">&not;&Phi;</td>
-                <td class="col-rule">&not;I m-n, m-o</td>
+                <td class="col-formula">~&Phi;</td>
+                <td class="col-rule">~I m-n, m-o</td>
             </tr>
         </table>
     </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Negation Elimination</div>
+        <table class="proof">
+            <tr>
+                <td class="col-num">m</td>
+                <td class="col-bar"></td>
+                <td class="col-formula">
+                    <div class="subproof-container">
+                        <span class="assumption">~&Phi;</span>
+                        <span>&Psi;<br>~&Psi;</span>
+                    </div>
+                </td>
+                <td class="col-rule">for reductio<br><br>n<br>o</td>
+            </tr>
+            <tr>
+                <td class="col-num">p</td>
+                <td class="col-bar"></td>
+                <td class="col-formula">&Phi;</td>
+                <td class="col-rule">~E m-n, m-o</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<h2>§1.2 Derived Rules</h2>
+<div class="rules-container">
+
+    <div class="rule-box">
+        <div class="rule-title">Dilemma</div>
+        <table class="proof">
+            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &or; &Psi;</td><td></td></tr>
+            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">&Phi; &rarr; &Omega;</td><td></td></tr>
+            <tr><td class="col-num">o</td><td class="col-bar"></td><td class="col-formula">&Psi; &rarr; &Omega;</td><td></td></tr>
+            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Omega;</td><td class="col-rule">DIL m, n, o</td></tr>
+        </table>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Modus Tollens</div>
+        <table class="proof">
+            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &rarr; &Psi;</td><td></td></tr>
+            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">~&Psi;</td><td></td></tr>
+            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">~&Phi;</td><td class="col-rule">MT m, n</td></tr>
+        </table>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Hypothetical Syllogism</div>
+        <table class="proof">
+            <tr><td class="col-num">m</td><td class="col-bar"></td><td class="col-formula">&Phi; &rarr; &Psi;</td><td></td></tr>
+            <tr><td class="col-num">n</td><td class="col-bar"></td><td class="col-formula">&Psi; &rarr; &Omega;</td><td></td></tr>
+            <tr><td class="col-num"></td><td class="col-bar"></td><td class="col-formula">&Phi; &rarr; &Omega;</td><td class="col-rule">HS m, n</td></tr>
+        </table>
+    </div>
+
 </div>
 
 <h2>§1.3 Replacement Rules</h2>
 <div class="rules-container">
-    <div class="rule-box" style="width: 100%;">
-        <table class="proof equiv-table">
+
+    <div class="rule-box">
+        <div class="rule-title">Commutativity</div>
+        <table class="proof">
             <tr>
-                <td>&not;&not;&Phi;</td>
-                <td class="equiv-symbol">&hArr;</td>
-                <td>&Phi;</td>
-                <td class="col-rule">DN</td>
+                <td class="col-formula">(&Phi; &amp; &Psi;)</td>
+                <td class="equiv-symbol">&harr;</td>
+                <td class="col-formula">(&Psi; &amp; &Phi;)</td>
+                <td class="col-rule"></td>
             </tr>
             <tr>
-                <td>&not;(&Phi; &or; &Psi;)</td>
-                <td class="equiv-symbol">&hArr;</td>
-                <td>(&not;&Phi; &amp; &not;&Psi;)</td>
-                <td class="col-rule" rowspan="2">DeM</td>
+                <td class="col-formula">(&Phi; &or; &Psi;)</td>
+                <td class="equiv-symbol">&harr;</td>
+                <td class="col-formula">(&Psi; &or; &Phi;)</td>
+                <td class="col-rule"></td>
             </tr>
             <tr>
-                <td>&not;(&Phi; &amp; &Psi;)</td>
-                <td class="equiv-symbol">&hArr;</td>
-                <td>(&not;&Phi; &or; &not;&Psi;)</td>
-            </tr>
-            <tr>
-                <td>(&Phi; &sup; &Psi;)</td>
-                <td class="equiv-symbol">&hArr;</td>
-                <td>(&not;&Phi; &or; &Psi;)</td>
-                <td class="col-rule" rowspan="2">MC</td>
-            </tr>
-            <tr>
-                <td>(&Phi; &or; &Psi;)</td>
-                <td class="equiv-symbol">&hArr;</td>
-                <td>(&not;&Phi; &sup; &Psi;)</td>
-            </tr>
-             <tr>
-                <td>(&Phi; &amp; &Psi;)</td>
-                <td class="equiv-symbol">&hArr;</td>
-                <td>(&Psi; &amp; &Phi;)</td>
-                <td class="col-rule" rowspan="2">Comm</td>
-            </tr>
-            <tr>
-                <td>(&Phi; &or; &Psi;)</td>
-                <td class="equiv-symbol">&hArr;</td>
-                <td>(&Psi; &or; &Phi;)</td>
-            </tr>
-            <tr>
-                <td>[(&Phi; &sup; &Psi;) &amp; (&Psi; &sup; &Phi;)]</td>
-                <td class="equiv-symbol">&hArr;</td>
-                <td>(&Phi; &equiv; &Psi;)</td>
-                <td class="col-rule">&equiv;ex</td>
+                <td class="col-formula">(&Phi; &harr; &Psi;)</td>
+                <td class="equiv-symbol">&harr;</td>
+                <td class="col-formula">(&Psi; &harr; &Phi;)</td>
+                <td class="col-rule">Comm</td>
             </tr>
         </table>
     </div>
-</div>
 
+    <div class="rule-box">
+        <div class="rule-title">Double Negation</div>
+        <table class="proof">
+            <tr>
+                <td class="col-formula">~~&Phi;</td>
+                <td class="equiv-symbol">&harr;</td>
+                <td class="col-formula">&Phi;</td>
+                <td class="col-rule">DN</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">De Morgan's Laws</div>
+        <table class="proof">
+            <tr>
+                <td class="col-formula">~(&Phi; &or; &Psi;)</td>
+                <td class="equiv-symbol">&harr;</td>
+                <td class="col-formula">(~&Phi; &amp; ~&Psi;)</td>
+                <td class="col-rule"></td>
+            </tr>
+            <tr>
+                <td class="col-formula">~(&Phi; &amp; &Psi;)</td>
+                <td class="equiv-symbol">&harr;</td>
+                <td class="col-formula">(~&Phi; &or; ~&Psi;)</td>
+                <td class="col-rule">DeM</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Material Conditional</div>
+        <table class="proof">
+            <tr>
+                <td class="col-formula">(&Phi; &rarr; &Psi;)</td>
+                <td class="equiv-symbol">&harr;</td>
+                <td class="col-formula">(~&Phi; &or; &Psi;)</td>
+                <td class="col-rule"></td>
+            </tr>
+            <tr>
+                <td class="col-formula">(&Phi; &or; &Psi;)</td>
+                <td class="equiv-symbol">&harr;</td>
+                <td class="col-formula">(~&Phi; &rarr; &Psi;)</td>
+                <td class="col-rule">MC</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Biconditional Exchange</div>
+        <table class="proof">
+            <tr>
+                <td class="col-formula">[(&Phi; &rarr; &Psi;) &amp; (&Psi; &rarr; &Phi;)]</td>
+                <td class="equiv-symbol">&harr;</td>
+                <td class="col-formula">(&Phi; &harr; &Psi;)</td>
+                <td class="col-rule">&harr;ex</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
   <h2>Reference</h2>
 
   <p>Ichikawa, Jonathan, and Magnus, P. D. <i>forall x (UBC edition): An Introduction to Formal Logic. 2019.</i></p>
