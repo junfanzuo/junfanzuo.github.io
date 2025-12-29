@@ -116,21 +116,67 @@
     .spacer-row td {
         height: 15px;
     }
+    .tree-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        font-family: "Times New Roman", serif;
+        font-style: italic;
+        font-size: 1.2rem;
+    }
+
+    .tree-root {
+        margin-bottom: 5px;
+    }
+
+    .tree-vertical-line {
+        width: 1px;
+        height: 25px;
+        background-color: black;
+        margin: 2px auto;
+    }
+
+    .tree-node {
+        margin-top: 2px;
+        text-align: center;
+    }
+
+    .tree-branch-svg {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .tree-branches-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px; 
+        margin-top: -5px; 
+    }
+
+    .tree-leaf {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
 
 </style>
 <meta charset="utf-8">
-<title>Logic II — ZUO Junfan</title>
+<title>Logic II: Evaluating Validity — ZUO Junfan</title>
 </head>
 <body>
 <div id="container">
-<h1>Logic II</h1>
+<h1>Logic II: Evaluating Validity</h1>
 <p><em>28 Dec 2025</em></p>
+
+<h2>§2.1 Natural Deduction</h2>
 
   <p><em>Logic I</em> covered the truth table. We can tell an argument is valid by constructing a truth table where no row has true premises but a false conclusion. This post introduces Natural Deduction, another method to determine the validity of an argument. We can prove that (a valid) argument is valid. My memory of Natural Deduction is a bit rusty so the best way for you the reader to fully grasp Natural Deduction is to do practice exercises – you can find them in the textbook. This post simply summarises Natural Deduction rules.</p>
 
-  <p>There are three kinds of rules. Basic Rules are all you need: if an argument is valid, you can simply use Basic Rules to prove it. Derived Rules are not necessary but they will be convenient for proof in some cases. Replacement Rules allow you to replace a sentence part, instead of the whole sentence. The following are the demonstrations of these rules which are adapted from Ichikawa and Magnus (2019, pp. 110-123).</p>
-  
-<h2>§2.1 Basic Rules</h2>
+  <p>There are three kinds of rules. Basic Rules are all you need: if an argument is valid, you can simply use Basic Rules to prove it. Derived Rules are not necessary but they will be convenient for proof in some cases. Replacement Rules allow you to replace a sentence part, instead of the whole sentence. The following are the demonstrations of these rules which are adapted from Ichikawa and Magnus (2019, pp. 110-123):</p>
+
+<h3>§2.1.1 Basic Rules</h3>
 <div class="rules-container">
 
     <div class="rule-box">
@@ -465,7 +511,7 @@
 
 </div>
 
-<h2>§2.2 Derived Rules</h2>
+<h3>§2.1.2 Derived Rules</h3>
 <div class="rules-container">
 
     <div class="rule-box">
@@ -498,7 +544,7 @@
 
 </div>
 
-<h2>§2.3 Replacement Rules</h2>
+<h3>§2.1.3 Replacement Rules</h3>
 <div class="rules-container">
 
     <div class="rule-box">
@@ -586,7 +632,137 @@
     </div>
 </div>
 
-    <p><em>Logic III</em> will cover SL Trees.</p>
+    <h2>§2.2 Analytic Tableaux</h2>
+
+    <p>We can prove that a valid argument is <em>indeed</em> valid by Natural Deduction. However, Natural Deduction cannot allow us to prove that an invalid argument is invalid. We introduce Analytic Tableaux here which can prove validity and invalidity. The following summarises Resolution Rules for Analytic Tableaux based on Ichikawa and Magnus (2019, pp. 77-82):</p>
+
+    <div class="rules-container">
+
+    <div class="rule-box">
+        <div class="rule-title">Conjunction</div>
+        <div class="tree-wrapper">
+            <div class="tree-root">&Phi; &and; &Psi;</div>
+            <div class="tree-vertical-line"></div>
+            <div class="tree-node">&Phi;<br>&Psi;</div>
+        </div>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Disjunction</div>
+        <div class="tree-wrapper">
+            <div class="tree-root">&Phi; &or; &Psi;</div>
+            <svg width="60" height="20" class="tree-branch-svg">
+                <line x1="30" y1="0" x2="0" y2="20" style="stroke:black;stroke-width:1.5" />
+                <line x1="30" y1="0" x2="60" y2="20" style="stroke:black;stroke-width:1.5" />
+            </svg>
+            <div class="tree-branches-container">
+                <div class="tree-leaf">&Phi;</div>
+                <div class="tree-leaf">&Psi;</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Conditional</div>
+        <div class="tree-wrapper">
+            <div class="tree-root">&Phi; &rarr; &Psi;</div>
+            <svg width="60" height="20" class="tree-branch-svg">
+                <line x1="30" y1="0" x2="0" y2="20" style="stroke:black;stroke-width:1.5" />
+                <line x1="30" y1="0" x2="60" y2="20" style="stroke:black;stroke-width:1.5" />
+            </svg>
+            <div class="tree-branches-container">
+                <div class="tree-leaf">~&Phi;</div>
+                <div class="tree-leaf">&Psi;</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Biconditional</div>
+        <div class="tree-wrapper">
+            <div class="tree-root">&Phi; &harr; &Psi;</div>
+            <svg width="60" height="20" class="tree-branch-svg">
+                <line x1="30" y1="0" x2="0" y2="20" style="stroke:black;stroke-width:1.5" />
+                <line x1="30" y1="0" x2="60" y2="20" style="stroke:black;stroke-width:1.5" />
+            </svg>
+            <div class="tree-branches-container">
+                <div class="tree-leaf">
+                    <span>&Phi;</span>
+                    <span>&Psi;</span>
+                </div>
+                <div class="tree-leaf">
+                    <span>~&Phi;</span>
+                    <span>~&Psi;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Negated Conjunction</div>
+        <div class="tree-wrapper">
+            <div class="tree-root">~(&Phi; &and; &Psi;)</div>
+            <svg width="60" height="20" class="tree-branch-svg">
+                <line x1="30" y1="0" x2="0" y2="20" style="stroke:black;stroke-width:1.5" />
+                <line x1="30" y1="0" x2="60" y2="20" style="stroke:black;stroke-width:1.5" />
+            </svg>
+            <div class="tree-branches-container">
+                <div class="tree-leaf">~&Phi;</div>
+                <div class="tree-leaf">~&Psi;</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Negated Disjunction</div>
+        <div class="tree-wrapper">
+            <div class="tree-root">~(&Phi; &or; &Psi;)</div>
+            <div class="tree-vertical-line"></div>
+            <div class="tree-node">~&Phi;<br>~&Psi;</div>
+        </div>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Negated Conditional</div>
+        <div class="tree-wrapper">
+            <div class="tree-root">~(&Phi; &rarr; &Psi;)</div>
+            <div class="tree-vertical-line"></div>
+            <div class="tree-node">&Phi;<br>~&Psi;</div>
+        </div>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Negated Biconditional</div>
+        <div class="tree-wrapper">
+            <div class="tree-root">~(&Phi; &harr; &Psi;)</div>
+            <svg width="60" height="20" class="tree-branch-svg">
+                <line x1="30" y1="0" x2="0" y2="20" style="stroke:black;stroke-width:1.5" />
+                <line x1="30" y1="0" x2="60" y2="20" style="stroke:black;stroke-width:1.5" />
+            </svg>
+            <div class="tree-branches-container">
+                <div class="tree-leaf">
+                    <span>&Phi;</span>
+                    <span>~&Psi;</span>
+                </div>
+                <div class="tree-leaf">
+                    <span>~&Phi;</span>
+                    <span>&Psi;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="rule-box">
+        <div class="rule-title">Double Negation</div>
+        <div class="tree-wrapper">
+            <div class="tree-root">~~&Phi;</div>
+            <div class="tree-vertical-line"></div>
+            <div class="tree-node">&Phi;</div>
+        </div>
+    </div>
+
+</div>
+    
     
   <h2>Reference</h2>
 
