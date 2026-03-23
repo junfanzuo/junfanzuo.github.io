@@ -13,7 +13,7 @@
       
       <h2>A. Translation</h2>
       
-        <p>Quantificational Logic (QL) retains all the truth-functional connectives of Propositional Logic. Two quantifiers are introduced here: The Universal Quantifier (&forall;) and The Existential Quantifier (&exist;). There are Predicates which assign properties and relations as well. Details of the grammar and syntax of QL will not be explained here but readers can refer to Harry Gensler's <i>Introduction to Logic</i> for an easy start. This section will merely present some translations of QL.</p>
+        <p>Quantificational Logic (QL) retains all the truth-functional connectives of Propositional Logic (PL). Two quantifiers are introduced here: The Universal Quantifier (&forall;) and The Existential Quantifier (&exist;). There are Predicates which assign properties and relations as well. Details of the grammar and syntax of QL will not be explained here but readers can refer to Harry Gensler's <i>Introduction to Logic</i> for an easy start. This section will merely present some translations of QL.</p>
         
         <blockquote>
           <pre><font color="#77b300">Wk &equals; <i>Kal'tsit is wise.</i></font></pre>
@@ -24,7 +24,7 @@
         </blockquote>
         
         <blockquote>
-          <pre><font color="#77b300">~&forall;<i>x</i>W<i>x</i> &equals; <i>It is not the case that, for all x, x is wise. (or, Not every one is wise.)</i></font></pre>
+          <pre><font color="#77b300">~&forall;<i>x</i>W<i>x</i> &equals; <i>It is not the case that, for all x, x is wise. (or, Not everyone is wise.)</i></font></pre>
         </blockquote>
         
         <blockquote>
@@ -79,7 +79,7 @@
       
       <h2>C. Proofs for QL</h2>
       
-        <p><i>Logic II</i> introduced Natural Deduction rules for Propositional Logic (PL). The rules applied for PL can be used for QL as well. Consider:</p>
+        <p><i>Logic II</i> introduced Natural Deduction rules for PL. The rules applied for PL can be used for QL as well. Consider:</p>
       
       <blockquote>
         <pre><font color="#77b300">1. &forall;<i>x</i>P<i>x</i> &or; &exist;<i>y</i>Q<i>y</i></font></pre>
@@ -143,7 +143,7 @@
       <p>Consider the solution:</p>
       
       <blockquote>
-        <pre style="font-family: monospace;"><font color="#77b300">1.  &forall;x(Ex &rarr; (Ix v Fx))&#10;2.  | ~(~&exist;xIx &rarr; &forall;x(~Fx &rarr; ~Ex))          (for reductio)&#10;3.  | ~&exist;xIx                             from 2&#10;4.  | ~&forall;x(~Fx &rarr; ~Ex)                    from 2&#10;5.  | &forall;x~Ix                             QN 3&#10;6.  | &exist;x~(~Fx &rarr; ~Ex)                    QN 4&#10;7.  | ~(~Fa &rarr; ~Ea)                      from 6&#10;8.  | ~Fa                               from 7&#10;9.  | Ea                                from 7&#10;10. | Ea &rarr; (Ia v Fa)                    &forall;E 1&#10;11. | Ia v Fa                           &rarr;E 9, 10&#10;12. | Ia                                DS 8, 11&#10;13. | ~Ia                               &forall;E 5&#10;14. ~&exist;xIx &rarr; &forall;x(~Fx &rarr; ~Ex)               ~I 2-13</font></pre>
+        <pre style="font-family: monospace;"><font color="#77b300">1.  &forall;x(Ex &rarr; (Ix v Fx))&#10;2.  | ~(~&exist;xIx &rarr; &forall;x(~Fx &rarr; ~Ex))          (for reductio)&#10;3.  | ~&exist;xIx                             from 2&#10;4.  | ~&forall;x(~Fx &rarr; ~Ex)                    from 2&#10;5.  | &forall;x~Ix                             QN 3&#10;6.  | &exist;x~(~Fx &rarr; ~Ex)                    QN 4&#10;7.  | ~(~Fa &rarr; ~Ea)                      from 6&#10;8.  | ~Fa                               from 7&#10;9.  | Ea                                from 7&#10;10. | Ea &rarr; (Ia v Fa)                    &forall;E 1&#10;11. | Ia v Fa                           &rarr;E 9, 10&#10;12. | Ia                                vE 8, 11&#10;13. | ~Ia                               &forall;E 5&#10;14. ~&exist;xIx &rarr; &forall;x(~Fx &rarr; ~Ex)               ~I 2-13</font></pre>
       </blockquote>
 
       <h2>D. Notes</h2>
