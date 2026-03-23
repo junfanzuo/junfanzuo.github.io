@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <title>Logic III: Quantificational Logic — ZUO Junfan</title>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" asyncsrc="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  
+  <body>
+      <h1 class="title">Logic III: Quantificational Logic</h1>
+      <p><em>23 Mar 2026</em></p>
+      
+      <h2>A. Translation</h2>
+      
+        <p>Quantificational Logic (QL) retains all the truth-functional connectives of Propositional Logic. Two quantifiers are introduced here: The Universal Quantifier (&forall;) and The Existential Quantifier (&exist;). There are Predicates which assign properties and relations as well. Details of the grammar and syntax of QL will not be explained here but readers can refer to Harry Gensler's <i>Introduction to Logic</i> for an easy start. This section will merely present some translations of QL.</p>
+        
+        <blockquote>
+          <pre><font color="#77b300">Wk &equals; <i>Kal'tsit is wise.</i></font></pre>
+        </blockquote>
+        
+        <blockquote>
+          <pre><font color="#77b300">Lkw &equals; <i>Kal'tsit loves Warfarin.</i></font></pre>
+        </blockquote>
+        
+        <blockquote>
+          <pre><font color="#77b300">~&forall;<i>x</i>W<i>x</i> &equals; <i>It is not the case that, for all x, x is wise. (or, Not every one is wise.)</i></font></pre>
+        </blockquote>
+        
+        <blockquote>
+          <pre><font color="#77b300">~&exist;<i>x</i>(W<i>x</i> & ~P<i>x</i>) &equals; <i>No one is both wise and not pretty.</i></font></pre>
+        </blockquote>
+        
+      <h2>B. Interpretations</h2>
+      
+      <p>A Universe of Discourse (UD) defines the a domain of things that we are talking about. Consider:</p>
+      
+        <blockquote>
+          <pre><font color="#77b300"><i>Everyone is satisfied.</i></font></pre>
+        </blockquote>
+        
+      <p>In this example, we tend to believe that "everyone" here refers to a certain group of people only - we are not talking about people in another country or people who are dead because that would be semantically strange. Normally what we are referring to is the people in this room. A UD allows us to apply the quantifiers for a certain group of elements. Consider: </p>
+      
+      <blockquote>
+          <pre><font color="#77b300"><i><strong>UD</strong> = {Kal'tsit, Warfarin}</i></font></pre>
+      </blockquote>
+      
+      <p>Given this UD, &forall;<i>x</i> refers to Kal'tsit <strong>AND</strong> Warfarin, and &exist;<i>x</i> refers to Kal'tsit <strong>OR</strong> Warfarin.</p>
+      
+      <p>We can assign extensions to predicate. Consider:</p>
+      
+      <blockquote>
+          <pre><font color="#77b300"><i><strong>Extension(Wise)</strong> = {Kal'tsit}</i></font></pre>
+      </blockquote>
+      
+      <blockquote>
+          <pre><font color="#77b300"><i><strong>Extension(Dumb)</strong> = {Warfarin}</i></font></pre>
+      </blockquote>
+      
+      <blockquote>
+          <pre><font color="#77b300"><i><strong>Extension(Friendly)</strong> = {Kal'tsit, Warfarin}</i></font></pre>
+      </blockquote>
+      
+      <p>&exist;<i>x</i>W<i>x</i> is true because there is <i>at least one</i> element in the UD that is true for Extension(Wise) (i.e., Wk is true). &forall;<i>x</i>D<i>x</i> is false because Dk is false. &forall;<i>x</i>(Wx v Fx) is true because (Wk v Fk) and (Ww v Fw) are both true.</p>
+      
+      <p>Consider the previous UD again. The following are examples of quantidied sentences with <i>polyadic predicates</i>.</p>
+      
+      <blockquote>
+          <pre><font color="#77b300">&forall;<i>x</i>L<i>xx</i> &equals; <i>Kal'tsit loves Kal'tsit, and Warfarin loves Warfarin.</i></font></pre>
+      </blockquote>
+      
+      <blockquote>
+          <pre><font color="#77b300">&exist;<i>x</i>L<i>kx</i> &equals; <i>Kal'tsit loves Kal'tsit, or Kal'tsit loves Warfarin.</i></font></pre>
+      </blockquote>
+      
+      <blockquote>
+          <pre><font color="#77b300">&exist;<i>x</i>&forall;<i>y</i>L<i>xy</i> &equals; <i>Either Kal'tsit loves everyone (both herself and Warfarin), or Warfarin loves everyone (both herself and Kal'tsit).</i></font></pre>
+      </blockquote>
+      
+      <h2>C. Proofs for QL</h2>
+      
+        <p><i>Logic II</i> introduced Natural Deduction rules for Propositional Logic (PL). The rules applied for PL can be used for QL as well. Consider:</p>
+      
+      <blockquote>
+        <pre><font color="#77b300">1. &forall;<i>x</i>P<i>x</i> &or; &exist;<i>y</i>Q<i>y</i></font></pre>
+      </blockquote>
+
+      <blockquote>
+        <pre><font color="#77b300">2. &not;&forall;<i>x</i>P<i>x</i> &amp; Ra</font></pre>
+      </blockquote>
+
+      <blockquote>
+        <pre><font color="#77b300">3. &not;&forall;<i>x</i>P<i>x</i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;E 2</font></pre>
+      </blockquote>
+
+      <blockquote>
+        <pre><font color="#77b300">4. &exist;<i>y</i>Q<i>y</i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &or;E 1, 3</font></pre>
+      </blockquote>
+
+      <blockquote>
+        <pre><font color="#77b300">5. &exist;<i>y</i>Q<i>y</i> &or; &forall;<i>z</i>S<i>z</i> &nbsp;&nbsp; &or;I 4</font></pre>
+      </blockquote>
+
+      <p>In addition to the rules for PL, there are new rules for QL. Consider:</p>
+
+      <blockquote>
+        <strong>Universal Elimination</strong>
+        <pre><font color="#77b300">m. &forall;&chi;&Phi;&#10;n. &Phi; [&chi;/c]        &forall;E m</font></pre>
+      </blockquote>
+
+      <blockquote>
+        <strong>Existential Introduction</strong>
+        <pre><font color="#77b300">m. &Phi;&#10;n. &exist;&chi;&Phi; [[c/&chi;]]    &exist;I m</font></pre>
+      </blockquote>
+
+      <blockquote>
+        <strong>Universal Introduction</strong>
+        <pre><font color="#77b300">m. &Phi;&#10;n. &forall;&chi;&Phi; [c<sup>1</sup>/&chi;]</font></pre>
+      </blockquote>
+
+      <blockquote>
+        <strong>Existential Elimination</strong>
+        <pre><font color="#77b300">m. &exist;&chi;&Phi;&#10;n. <span style="border-left: 1px solid #000000; border-bottom: 1px solid #000000; padding-left: 8px; padding-bottom: px;">&Phi; [&chi;/c<sup>2</sup>]</span>               &#10;o. <span style="border-left: 1px solid #000000; padding-left: 8px; padding-top: 2px;">&Psi;</span>&#10;p. &Psi;</font></pre>
+      </blockquote>
+
+      <blockquote>
+        <strong>Quantifier Negation</strong>
+        <pre><font color="#77b300">&forall;<i>x</i>P<i>x</i> = ~&exist;<i>x</i>~P<i>x</i></font></pre>
+        <pre><font color="#77b300">&exist;<i>x</i>P<i>x</i> = ~&forall;<i>x</i>~P<i>x</i></font></pre>
+      </blockquote>
+
+      <p>Below is an exercise question for this post, extracted from Gensler (2017, p. 276).</p>
+
+      <blockquote>
+        <strong>Translate into logic, and say whether it is valid (and give a proof) or invalid (and give a refutation).</strong>
+      </blockquote>
+
+      <blockquote>
+        <i>Anything is enjoyable is either immoral or fattening.</i><br>
+        <i>Therefore, if nothing is immoral, then everything that is not fattening is not enjoyable.</i>
+      </blockquote>
+
+      <p>Consider the solution:</p>
+      
+      <blockquote>
+        <pre style="font-family: monospace;"><font color="#77b300">1.  &forall;x(Ex &rarr; (Ix v Fx))&#10;2.  | ~(~&exist;xIx &rarr; &forall;x(~Fx &rarr; ~Ex))          (for reductio)&#10;3.  | ~&exist;xIx                             from 2&#10;4.  | ~&forall;x(~Fx &rarr; ~Ex)                    from 2&#10;5.  | &forall;x~Ix                             QN 3&#10;6.  | &exist;x~(~Fx &rarr; ~Ex)                    QN 4&#10;7.  | ~(~Fa &rarr; ~Ea)                      from 6&#10;8.  | ~Fa                               from 7&#10;9.  | Ea                                from 7&#10;10. | Ea &rarr; (Ia v Fa)                    &forall;E 1&#10;11. | Ia v Fa                           &rarr;E 9, 10&#10;12. | Ia                                DS 8, 11&#10;13. | ~Ia                               &forall;E 5&#10;14. ~&exist;xIx &rarr; &forall;x(~Fx &rarr; ~Ex)               ~I 2-13</font></pre>
+      </blockquote>
+
+      <h2>D. Notes</h2>
+
+      <p>1. <i>c</i> cannot appear in any active assumptions or premises.</p>
+
+      <p>2. <i>c</i> can appear in a subproof only.</p>
+
+      <h2>E. References</h2>
+
+      <p>Gensler, H. J. (2017). <i>Introduction to logic</i>. Routledge.</p>
+
+      <p>&ast; I consulted Professor Jennifer Nado's PHIL1068 at HKU for this post.</p>
+
+  <div class="contact"><strong>Contact:</strong> jfzuo@kal-tsit.com</a></div>
+  </body>
+  
+</html>
