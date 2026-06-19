@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Resources — ZUO Junfan</title>
+<style>
+  .split-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+    padding: 20px 0;
+    position: relative;
+  }
+ .left-column, .right-column {
+    flex: 1;
+  }
+  .split-container::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 70px;
+  bottom: 120px;          
+  width: 2px;
+  background: #8B4513;
+  transform: translateX(-50%);
+}
+  .left-column { position: relative; padding-right: 50px; }
+  .right-column { position: relative; padding-left: 50px; }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  th, td {
+    border: 1px solid #8B4513;
+    padding: 10px;
+    text-align: left;
+    text-align: center;      
+    vertical-align: middle;
+  }
+  th {
+    background: #f5eee6;
+  }
+  .photo-wall img {
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid #8B4513;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .caption {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+
+<body>
+<div id="container">
+
+<h1>Resources</h1>
+<p class="subtitle">Previous work · documents · photos</p>
+
+<div class="split-container">
+
+  <div class="left-column">
+    <h2>My Previous Work</h2>
+    <table>
+      <tr><th>Year</th><th>Title</th><th>File</th></tr>
+      <tr>
+        <td>Feb 2025</td>
+        <td>IELTS Resources</td>
+        <td><a href="files/IELTS.pdf">PDF</a></td>
+      </tr>
+    
+     
+    </table>
+  </div>
+
+
+  <div class="right-column">
+    <h2>Photos</h2>
+    <div class="photo-wall">
+
+      <img src="photos/Mimi.jpg" alt="Mimi the Cat">
+      <div class="caption">My cat, Mimi, Nov 2021</div>
+
+
+    </div>
+  </div>
+
+</div>
+
+<br><br>
+<p style="text-align:center;">
+  <a href="index.html">← Back to homepage</a>
+</p>
+<div class="contact">
+  <strong>Contact:</strong> jfzuo@kal-tsit.com</a>
+</div>
+
+</div>
+</body>
+</html>
