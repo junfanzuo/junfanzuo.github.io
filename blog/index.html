@@ -3,6 +3,45 @@
 <head>
 <meta charset="utf-8">
 <title>Blog Archive — ZUO Junfan</title>
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    position: relative;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+  background:
+    linear-gradient(rgba(255,255,255,0.80), rgba(255,255,255,0.40)),
+    url("../assets/bruges-bg.jpg");
+
+  background-size: auto 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: white;
+}
+
+  #container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  background: rgba(255,255,255,0.72);
+}
+
+  @media (max-width: 700px) {
+  #container {
+    margin: 20px;
+    padding: 25px 20px;
+    background: rgba(255,255,255,0.78);
+  }
+}
+</style>
 </head>
 <body>
 <div id="container">
@@ -19,7 +58,7 @@
 
 <br><br>
 <p style="text-align:center;"><a href="../index.html">← Back to homepage</a></p>
-<div class="contact"><strong>Contact:</strong> jfzuo@kal-tsit.com</a></div>
+<div class="contact"><strong>Contact:</strong> jfzuo@kal-tsit.com</div>
 </div>
 </body>
 </html>
